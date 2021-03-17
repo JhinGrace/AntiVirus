@@ -2,7 +2,7 @@
 #include <QtWidgets/QMainWindow>
 #include "ui_Client.h"
 #include <Windows.h>
-#include <thread>
+#include <Liba.h>
 
 class Client : public QMainWindow
 {
@@ -13,22 +13,14 @@ public:
 	~Client();
 
 private:
-	void connectToServer();
-	void wakeUpServer();
-	void writeToServer();
-	void readFromServer();
-	void sendRequest();
-	void TestRequest();
-
-signals:
-	void output(const QString& text);
+	void connectToServ();
+	void serverWakeUp();
+	void requestScan();
 
 private slots:
-	void on_pushButton_clicked();
+	void on_Scan_clicked();
 
 private:
 	Ui::ClientClass ui;
-	HANDLE hClient;
-	HANDLE hServer;
-	HANDLE clientUp;
+	std::shared_ptr<Comms> comms;
 };

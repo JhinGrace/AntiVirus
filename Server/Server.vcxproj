@@ -151,10 +151,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="DB.cpp" />
+    <ClCompile Include="DBLoad.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Server.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="DB.h" />
+    <ClInclude Include="DBLoad.h" />
     <ClInclude Include="Server.h" />
   </ItemGroup>
   <ItemGroup>

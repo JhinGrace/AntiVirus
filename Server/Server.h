@@ -1,5 +1,7 @@
 #pragma once
+#include <memory>
 #include <Liba.h>
+#include <DB.h>
 
 class Server
 {
@@ -7,14 +9,13 @@ public:
 	Server();
 	~Server();
 
-private:
-	void Read();
-	void Wait();
-	void processRequest();
-	void processTestRequest();
+	void start();
 
 private:
-	HANDLE hClient;
-	HANDLE hServer;
-	HANDLE clientUp;
+	void startReading();
+	void processRequest(bool& clientDown, bool& serverDown);
+
+private:
+	std::shared_ptr<DB> base;
+	std::shared_ptr<Comms> comms;
 };

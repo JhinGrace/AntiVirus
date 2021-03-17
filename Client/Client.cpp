@@ -1,6 +1,12 @@
 #include "Client.h"
 #include "Liba.h"
+#include "Write.h"
+#include "Read.h"
+#include "CommsMail.h"
+#include <TlHelp32.h>
 #include <QString>
+#include <QFileDialog>
+#include <QInputDialog>
 #include <QThread>
 #include <array>
 #include <iostream>
@@ -10,91 +16,58 @@ Client::Client(QWidget* parent)
 	: QMainWindow(parent)
 {
 	ui.setupUi(this);
-	connect(this, &Client::output, ui.textEdit, &QTextEdit::append);
-	connectToServer();
+	connectToServ();
 }
 
 Client::~Client()
 {
-	ResetEvent(clientUp);
-	Liba::Disconnect(hServer);
-	Liba::Disconnect(hClient);
+	Write reader(comms);
+	reader.writeUInt8((uint8_t)CMDCODE::CLIENTSHUTDOWN);
 }
 
-void Client::connectToServer()
+void Client::on_Scan_clicked()
 {
-	hClient = Liba::CreateSlot(u"\\\\.\\mailslot\\client");
-	hServer = Liba::ConnectToSlot(u"\\\\.\\mailslot\\server");
-	if (Liba::IsInvalid(hServer))
+	QThread* scanThread = QThread::create(&Client::requestScan, this);
+	scanThread->start();
+}
+
+void Client::requestScan() 
+{
+	Write writer(comms);
+	Read reader(comms);
+}
+
+void Client::connectToServ()
+{
+	serverWakeUp();
+
+	comms = Comms::Mailslots(u"\\\\.\\mailslot\\client", u"\\\\.\\mailslot\\server");
+
+	comms->connect();
+}
+
+void Client::serverWakeUp() 
+{
+	PROCESSENTRY32 entry;
+	entry.dwSize = sizeof(PROCESSENTRY32);
+
+	HANDLE snapshot = CreateToolhelp32Snapshot(TH32CS_SNAPPROCESS, 0);
+
+	if (Process32First(snapshot, &entry) == TRUE)
 	{
-		wakeUpServer();
-
-		while (true)
+		while (Process32Next(snapshot, &entry) == TRUE)
 		{
-			hServer = Liba::ConnectToSlot(u"\\\\.\\mailslot\\server");
-
-			if (!Liba::IsInvalid(hServer))
-				break;
-
-			Sleep(10);
+			if (wcscmp(entry.szExeFile, L"Server.exe") == 0)
+			{
+				// if Server.exe is running, don't wakeup
+				CloseHandle(snapshot);
+				return;
+			}
 		}
 	}
-	clientUp = OpenEvent(EVENT_ALL_ACCESS, NULL, TEXT("ClientUpEvent"));
-	SetEvent(clientUp);
-}
 
-void Client::sendRequest()
-{
-	writeToServer();
-	readFromServer();
-}
+	CloseHandle(snapshot);
 
-void Client::on_pushButton_clicked()
-{
-	QThread* thread = QThread::create(&Client::TestRequest, this);
-	thread->start();
-}
-
-void Client::TestRequest()
-{
-	// TEST DATA
-	int32_t testNumber = 12345;
-
-	std::u16string testString = u"A Few Words";
-
-	// send to server
-	if (!Liba::IsInvalid(hServer))
-	{
-		QString report = QString::fromUtf16(u"Отправлено:\n");
-		report += QString::number(testNumber) + "\n";
-		report += QString::fromUtf16(testString.c_str()) + "\n";
-
-		output(report);
-
-		Liba::WriteInt8(hServer, (int8_t)CMDCODE::TEST);
-		Liba::WriteInt32(hServer, testNumber);
-		Liba::WriteU16String(hServer, testString);
-	}
-
-	if (!Liba::IsInvalid(hClient))
-	{
-		// read echo from server
-		int32_t testNumberResponse = Liba::ReadInt32(hClient);
-		std::u16string testStringResponse = Liba::ReadU16String(hClient);
-
-
-		// output
-
-		QString report = QString::fromUtf16(u"Получено:\n");
-		report += QString::number(testNumberResponse) + "\n";
-		report += QString::fromUtf16(testStringResponse.c_str()) + "\n";
-
-		output(report);
-	}
-}
-
-void Client::wakeUpServer()
-{
 	STARTUPINFO si;
 	PROCESS_INFORMATION pi;
 	ZeroMemory(&si, sizeof(si));
@@ -121,10 +94,3 @@ void Client::wakeUpServer()
 	CloseHandle(pi.hThread);
 }
 
-void Client::readFromServer() {
-
-}
-
-void Client::writeToServer() {
-
-}

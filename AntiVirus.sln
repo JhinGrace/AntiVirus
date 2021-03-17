@@ -9,6 +9,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Client", "Client\Client.vcx
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Liba", "Liba\Liba.vcxproj", "{3F268D2F-8BAE-4248-8C72-12D437AA5426}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DBEdit", "DBEdit\DBEdit.vcxproj", "{87AE9BA1-EF3F-43A2-B0C6-80D39A754DA8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -39,6 +41,12 @@ Global
 		{3F268D2F-8BAE-4248-8C72-12D437AA5426}.Release|x64.Build.0 = Release|x64
 		{3F268D2F-8BAE-4248-8C72-12D437AA5426}.Release|x86.ActiveCfg = Release|Win32
 		{3F268D2F-8BAE-4248-8C72-12D437AA5426}.Release|x86.Build.0 = Release|Win32
+		{87AE9BA1-EF3F-43A2-B0C6-80D39A754DA8}.Debug|x64.ActiveCfg = Debug|x64
+		{87AE9BA1-EF3F-43A2-B0C6-80D39A754DA8}.Debug|x64.Build.0 = Debug|x64
+		{87AE9BA1-EF3F-43A2-B0C6-80D39A754DA8}.Debug|x86.ActiveCfg = Debug|x64
+		{87AE9BA1-EF3F-43A2-B0C6-80D39A754DA8}.Release|x64.ActiveCfg = Release|x64
+		{87AE9BA1-EF3F-43A2-B0C6-80D39A754DA8}.Release|x64.Build.0 = Release|x64
+		{87AE9BA1-EF3F-43A2-B0C6-80D39A754DA8}.Release|x86.ActiveCfg = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
