@@ -108,7 +108,7 @@ void Client::on_delButton_clicked() {
 }
 
 void Client::on_monitorStart_clicked() {
-	QThread* monitorSetupThread = QThread::create(&Client::setupMonitor, this, ui.pathLabel->text().toStdU16String());
+	QThread* monitorSetupThread = QThread::create(&Client::setupMonitor, this, ui.monitorPath->text().toStdU16String());
 	monitorSetupThread->start();
 	ui.monitorLog->setRowCount(ui.monitorLog->rowCount() + 1);
 	int lastIndex = ui.monitorLog->rowCount() - 1;

@@ -149,9 +149,7 @@ void Server::loadMonitors() {
 	uint64_t recordNumber = reader.readUInt64();
 	for (size_t i = 0; i < recordNumber; i++) {
 		std::u16string scanPath = reader.readU16String();
-
 		monitors.push_back(Monitor(scanPath, db, viruses));
-
 		std::thread monitorThread(&Monitor::start, std::ref(monitors[monitors.size() - 1]));
 		monitorThread.detach();
 	}
