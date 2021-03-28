@@ -1,7 +1,9 @@
-#include "Server.h"
+#include "Service.h"
+#include <tchar.h>
 
-int main()
+int _tmain(int argc, _TCHAR* argv[])
 {
-	Server server;
-	server.start();
+	Service::process(argc, argv);
+
+	return 0;
 }

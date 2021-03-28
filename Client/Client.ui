@@ -6,51 +6,246 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>600</width>
-    <height>400</height>
+    <width>1220</width>
+    <height>776</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Client</string>
   </property>
   <widget class="QWidget" name="centralWidget">
-   <widget class="QPushButton" name="pushButton">
-    <property name="geometry">
-     <rect>
-      <x>250</x>
-      <y>260</y>
-      <width>75</width>
-      <height>23</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>PushButton</string>
-    </property>
-   </widget>
-   <widget class="QTextEdit" name="textEdit">
-    <property name="geometry">
-     <rect>
-      <x>100</x>
-      <y>10</y>
-      <width>391</width>
-      <height>241</height>
-     </rect>
-    </property>
-    <property name="sizePolicy">
-     <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-      <horstretch>0</horstretch>
-      <verstretch>0</verstretch>
-     </sizepolicy>
-    </property>
-   </widget>
+   <layout class="QGridLayout" name="gridLayout">
+    <item row="0" column="0">
+     <widget class="QStackedWidget" name="stackedWidget">
+      <property name="currentIndex">
+       <number>0</number>
+      </property>
+      <widget class="QWidget" name="mainpage">
+       <layout class="QGridLayout" name="gridLayout_3">
+        <item row="0" column="0">
+         <widget class="QTextEdit" name="liveLog"/>
+        </item>
+        <item row="1" column="0">
+         <layout class="QHBoxLayout" name="horizontalLayout_7">
+          <item>
+           <widget class="QPushButton" name="targetButton">
+            <property name="text">
+             <string>Choose Target</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="pathLabel">
+            <property name="text">
+             <string/>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item row="4" column="0">
+         <widget class="QProgressBar" name="progressBar">
+          <property name="value">
+           <number>24</number>
+          </property>
+         </widget>
+        </item>
+        <item row="5" column="0">
+         <layout class="QHBoxLayout" name="horizontalLayout_10">
+          <item>
+           <widget class="QPushButton" name="logButton">
+            <property name="text">
+             <string>Virus Log</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="quitButton">
+            <property name="text">
+             <string>Quit</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item row="2" column="0">
+         <layout class="QHBoxLayout" name="horizontalLayout_8">
+          <item>
+           <widget class="QPushButton" name="monitorButton">
+            <property name="text">
+             <string>Monitor</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="timmerButton">
+            <property name="text">
+             <string>Timed Scan</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item row="3" column="0">
+         <layout class="QHBoxLayout" name="horizontalLayout_9">
+          <item>
+           <widget class="QPushButton" name="scanButton">
+            <property name="text">
+             <string>Scan</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="stopScanButton">
+            <property name="text">
+             <string>Stop Scan</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="Quarantine">
+       <layout class="QGridLayout" name="gridLayout_4">
+        <item row="1" column="0">
+         <widget class="QPushButton" name="returnButton">
+          <property name="text">
+           <string>Return</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="1">
+         <widget class="QPushButton" name="delButton">
+          <property name="text">
+           <string>Delete</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="0" colspan="2">
+         <widget class="QListWidget" name="virusLog"/>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="Monitor">
+       <layout class="QGridLayout" name="gridLayout_2">
+        <item row="0" column="0" colspan="3">
+         <widget class="QTableWidget" name="monitorLog">
+          <column>
+           <property name="text">
+            <string>Path</string>
+           </property>
+          </column>
+         </widget>
+        </item>
+        <item row="1" column="0">
+         <widget class="QPushButton" name="monitorBrowse">
+          <property name="text">
+           <string>Browse</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="1">
+         <widget class="QLineEdit" name="monitorPath">
+          <property name="font">
+           <font>
+            <pointsize>10</pointsize>
+           </font>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="0">
+         <widget class="QPushButton" name="returnButton3">
+          <property name="text">
+           <string>Return</string>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="1">
+         <widget class="QPushButton" name="monitorStart">
+          <property name="text">
+           <string>Start Monitor</string>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="2">
+         <widget class="QPushButton" name="monitorStop">
+          <property name="text">
+           <string>Stop Monitor</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="TimerScan">
+       <layout class="QGridLayout" name="gridLayout_9">
+        <item row="0" column="0" colspan="3">
+         <widget class="QTableWidget" name="timmerLog">
+          <column>
+           <property name="text">
+            <string>Path</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>Time</string>
+           </property>
+          </column>
+         </widget>
+        </item>
+        <item row="1" column="0">
+         <widget class="QPushButton" name="timmerBrowse">
+          <property name="text">
+           <string>Browse</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="1">
+         <widget class="QLineEdit" name="timmerPath">
+          <property name="font">
+           <font>
+            <pointsize>10</pointsize>
+           </font>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="0">
+         <widget class="QPushButton" name="returnButton2">
+          <property name="text">
+           <string>Return</string>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="1">
+         <widget class="QPushButton" name="timmerStart">
+          <property name="text">
+           <string>Timed Scan Start</string>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="2">
+         <widget class="QPushButton" name="timmerStop">
+          <property name="text">
+           <string>Stop Scan</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="2">
+         <widget class="QTimeEdit" name="timmerClock"/>
+        </item>
+       </layout>
+      </widget>
+     </widget>
+    </item>
+   </layout>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>600</width>
-     <height>21</height>
+     <width>1220</width>
+     <height>22</height>
     </rect>
    </property>
   </widget>

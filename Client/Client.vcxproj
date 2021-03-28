@@ -52,12 +52,14 @@
     <ClCompile>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <AdditionalIncludeDirectories>$(Qt_INCLUDEPATH_);$(SolutionDir)Liba;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
       <LanguageStandard>stdcpp17</LanguageStandard>
-      <AdditionalIncludeDirectories>$(Qt_INCLUDEPATH_);$(SolutionDir)Liba;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(Qt_INCLUDEPATH_);$(SolutionDir)Liba;$(SolutionDir)DBEdit;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
   </ItemDefinitionGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'" Label="QtSettings">
@@ -110,9 +112,15 @@
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\DBEdit\DBEdit.vcxproj">
+      <Project>{87ae9ba1-ef3f-43a2-b0c6-80d39a754da8}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\Liba\Liba.vcxproj">
       <Project>{3f268d2f-8bae-4248-8c72-12d437aa5426}</Project>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <QtMoc Include="FileDialogue.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Condition="Exists('$(QtMsBuild)\qt.targets')">

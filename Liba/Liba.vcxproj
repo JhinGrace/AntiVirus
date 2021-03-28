@@ -154,12 +154,14 @@
     <ClCompile Include="CommsMail.cpp" />
     <ClCompile Include="Liba.cpp" />
     <ClCompile Include="Read.cpp" />
+    <ClCompile Include="Viruses.cpp" />
     <ClCompile Include="Write.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CommsMail.h" />
     <ClInclude Include="Liba.h" />
     <ClInclude Include="Read.h" />
+    <ClInclude Include="Viruses.h" />
     <ClInclude Include="Write.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
