@@ -1,8 +1,7 @@
 #pragma once
 #include "DB.h"
 
-class DBLoad
-{
+class DBLoad {
 public:
 	static DB* load(const std::u16string& path);
 };

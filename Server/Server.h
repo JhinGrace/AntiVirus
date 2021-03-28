@@ -8,8 +8,7 @@
 #include "Timmer.h"
 
 
-class Server
-{
+class Server {
 public:
 	Server();
 	~Server();

@@ -85,7 +85,6 @@ void Server::processRequest() {
 }
 
 void Server::requestDel() {
-	// check if file exists
 	Read reader(comms);
 	uint64_t threatIndex = reader.readUInt64();
 	std::u16string threatPath = viruses->get(threatIndex);
@@ -171,8 +170,7 @@ void Server::saveMonitors() {
 	writer.close();
 }
 
-void Server::loadTimmers()
-{
+void Server::loadTimmers() {
 	std::u16string filePath = u"scanners.gor";
 	Read reader(filePath);
 	if (!reader.isOpen())
@@ -183,7 +181,6 @@ void Server::loadTimmers()
 		return;
 	}
 	uint64_t recordNumber = reader.readUInt64();
-
 	for (size_t i = 0; i < recordNumber; i++) {
 		std::u16string scanPath = reader.readU16String();
 		uint32_t hours = reader.readUInt32();

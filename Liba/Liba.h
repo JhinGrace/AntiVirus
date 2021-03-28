@@ -15,7 +15,6 @@ public:
 	virtual void connect() = 0;
 	virtual HANDLE readHandle() = 0;
 	virtual HANDLE writeHandle() = 0;
-
 	virtual void clear() = 0;
 	virtual void disconnect() = 0;
 };

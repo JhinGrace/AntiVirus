@@ -8,8 +8,7 @@
 #include "Engine.h"
 #include "Viruses.h"
 
-class Scanner
-{
+class Scanner {
 public:
 	Scanner(const std::shared_ptr<DB>& db,
 		const std::shared_ptr<Viruses>& viruses);

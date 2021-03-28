@@ -112,10 +112,8 @@ void Service::startService() {
 }
 
 void Service::init() {
-	//Sleep(20000);
 	setWorkingDirectory();
 	reportSvcStatus(SERVICE_RUNNING, NO_ERROR, 0);
-	// TO_DO Perform work
 	server.start();
 }
 

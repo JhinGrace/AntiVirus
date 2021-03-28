@@ -2,16 +2,13 @@
 #include "Liba.h"
 #include <string>
 
-class CommsMail : public Comms
-{
+class CommsMail : public Comms {
 public:
 	CommsMail(const std::u16string& readPath, const std::u16string& writePath);
 	~CommsMail();
-
 	virtual void connect() override;
 	virtual HANDLE readHandle() override { return readSlot; }
 	virtual HANDLE writeHandle() override { return writeSlot; }
-
 	virtual void clear() override;
 	virtual void disconnect() override;
 

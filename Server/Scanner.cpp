@@ -18,7 +18,6 @@ Scanner::Scanner(const std::shared_ptr<DB>& db,
 }
 
 Scanner::Scanner() {
-
 }
 
 Scanner& Scanner::operator=(const Scanner& other) {
@@ -26,14 +25,12 @@ Scanner& Scanner::operator=(const Scanner& other) {
 	db = other.db;
 	viruses = other.viruses;
 	shouldStop = other.shouldStop;
-
 	return *this;
 }
 
 void Scanner::startScan(const std::u16string& path, HANDLE hReportAddress, bool async) {
 	shouldStop = false;
 	stopped = false;
-
 	if (async) {
 		std::thread scanThread(&Scanner::scanWithReport, this, path, hReportAddress);
 		scanThread.detach();
@@ -46,7 +43,6 @@ void Scanner::startScan(const std::u16string& path, HANDLE hReportAddress, bool 
 void Scanner::startScan(const std::u16string& path, bool async) {
 	shouldStop = false;
 	stopped = false;
-
 	if (async) {
 		std::thread scanThread(&Scanner::scan, this, path);
 		scanThread.detach();
@@ -131,8 +127,7 @@ void Scanner::scanDirectory(const std::u16string& path, HANDLE hReportAddress) {
 	}
 }
 
-void Scanner::scanDirectory(const std::u16string& path)
-{
+void Scanner::scanDirectory(const std::u16string& path) {
 	using std::filesystem::recursive_directory_iterator;
 	using fp = bool (*)(const std::filesystem::path&);
 	uint64_t numberOfFiles = std::count_if(recursive_directory_iterator(path),
@@ -217,8 +212,7 @@ void Scanner::scanFile(const std::u16string& path, HANDLE hReportAddress) {
 	}
 }
 
-void Scanner::scanFile(const std::u16string& path)
-{
+void Scanner::scanFile(const std::u16string& path) {
 	if (shouldStop)
 		return;
 	std::u16string virusName;
@@ -260,7 +254,6 @@ bool Scanner::scanZip(const Target& target, std::u16string& virusName) {
 	zip_t* archive = nullptr;
 	zip_error_t error;
 	zip_error_init(&error);
-	// create archive source
 	if (target.objtype == OBJTYPE::DIRENTRY) {
 		if ((src = zip_source_win32w_create((wchar_t*)target.filePath.c_str(), 0, -1, &error)) == NULL) {
 			fprintf(stderr, "can't create source: %s\n", zip_error_strerror(&error));
@@ -277,7 +270,6 @@ bool Scanner::scanZip(const Target& target, std::u16string& virusName) {
 	}
 	else
 		return false;
-	/* open zip archive from source */
 	if ((archive = zip_open_from_source(src, 0, &error)) == NULL) {
 		fprintf(stderr, "can't open zip from source: %s\n", zip_error_strerror(&error));
 		zip_source_free(src);
@@ -285,7 +277,7 @@ bool Scanner::scanZip(const Target& target, std::u16string& virusName) {
 		return NULL;
 	}
 	zip_error_fini(&error);
-	zip_int64_t num_entries = zip_get_num_entries(archive, /*flags=*/0);
+	zip_int64_t num_entries = zip_get_num_entries(archive, 0);
 	for (zip_int64_t i = 0; i < num_entries; i++) {
 		if (shouldStop) {
 			zip_close(archive);

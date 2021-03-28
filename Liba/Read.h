@@ -6,8 +6,7 @@
 #include <vector>
 #include <memory>
 
-class Read
-{
+class Read {
 public:
 	Read(const std::u16string& path);
 	Read(const std::shared_ptr<Comms>& commType);

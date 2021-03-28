@@ -5,8 +5,7 @@
 #include "Liba.h"
 #include <memory.h>
 
-class Write
-{
+class Write {
 public:
 	Write(const std::u16string& path);
 	Write(const std::shared_ptr<Comms>& commType);

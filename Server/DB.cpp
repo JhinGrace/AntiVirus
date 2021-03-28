@@ -2,13 +2,11 @@
 #include <../PicoSHA2/picosha2.h>
 #include <memory>
 
-DB::DB(std::unordered_multimap<uint64_t, Log>&& db)
-{
+DB::DB(std::unordered_multimap<uint64_t, Log>&& db) {
 	this->db = std::move(db);
 }
 
-DB::DB(DB&& other)
-{
+DB::DB(DB&& other) {
 	this->db = std::move(other.db);
 }
 
@@ -37,8 +35,7 @@ bool DB::Compare(char* address, uint64_t offset, const std::u16string& type, std
 }
 
 
-DB& DB::operator=(DB&& other)
-{
+DB& DB::operator=(DB&& other) {
 	this->db = std::move(other.db);
 	return *this;
 }

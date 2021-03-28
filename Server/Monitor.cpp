@@ -15,8 +15,6 @@ Monitor::Monitor() {
 Monitor& Monitor::operator=(const Monitor& other) {
 	path = other.path;
 	scanner = other.scanner;
-	shouldStop = other.shouldStop;
-	shouldPause = other.shouldPause;
 	changeHandle = other.changeHandle;
 	return *this;
 }

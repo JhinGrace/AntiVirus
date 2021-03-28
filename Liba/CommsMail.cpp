@@ -1,7 +1,6 @@
 #include "CommsMail.h"
 
-CommsMail::CommsMail(const std::u16string& readPath, const std::u16string& writePath)
-{
+CommsMail::CommsMail(const std::u16string& readPath, const std::u16string& writePath) {
 	this->readPath = readPath;
 	this->writePath = writePath;
 	SECURITY_DESCRIPTOR sd;
@@ -51,17 +50,12 @@ void CommsMail::clear()
 		&cMessage,
 		(LPDWORD)NULL);
 
-	if (cbMessage == MAILSLOT_NO_MESSAGE)
-	{
+	if (cbMessage == MAILSLOT_NO_MESSAGE) {
 		return;
 	}
-
 	cAllMessages = cMessage;
-
 	char buffer[2048];
-
-	while (cMessage != 0)  // retrieve all messages
-	{
+	while (cMessage != 0) {
 
 		fResult = ReadFile(readSlot,
 			buffer,
@@ -73,8 +67,7 @@ void CommsMail::clear()
 	}
 }
 
-void CommsMail::disconnect()
-{
+void CommsMail::disconnect() {
 	CloseHandle(readSlot);
 	CloseHandle(writeSlot);
 }

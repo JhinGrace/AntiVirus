@@ -3,8 +3,7 @@
 #include "Target.h"
 #include "DB.h"
 
-class Engine
-{
+class Engine {
 public:
 	Engine(const std::shared_ptr<DB>& db);
 	Engine();

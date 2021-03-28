@@ -2,15 +2,13 @@
 #include <unordered_map>
 #include <string>
 
-struct Log
-{
+struct Log {
 	std::u16string name, type;
 	uint64_t length, sigStart, offsetStart, offsetEnd;
 	std::string sha256;
 };
 
-class DB
-{
+class DB {
 public:
 	DB() = default;
 	DB(std::unordered_multimap<uint64_t, Log>&& db);

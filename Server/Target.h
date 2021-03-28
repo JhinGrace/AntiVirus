@@ -5,8 +5,7 @@
 
 enum class OBJTYPE {NONE = 0, DIRENTRY, ZIPENTRY, MEMORY};
 
-struct Target
-{
+struct Target {
 	OBJTYPE objtype = OBJTYPE::NONE;
 	std::u16string fileType = u"";
 	std::u16string filePath = u"";

@@ -3,7 +3,7 @@
 #include <thread>
 
 Timmer::Timmer(const std::shared_ptr<DB>& db, const std::shared_ptr<Viruses>& viruses,
-	const std::u16string path /*= u""*/, uint32_t hours /*= 0*/, uint32_t minutes /*= 0*/) : scanner(db, viruses) {
+	const std::u16string path , uint32_t hours, uint32_t minutes) : scanner(db, viruses) {
 	scanPath = path;
 	this->hours = hours;
 	this->minutes = minutes;
@@ -14,7 +14,6 @@ Timmer& Timmer::operator=(const Timmer& other) {
 	hours = other.hours;
 	minutes = other.minutes;
 	scanPath = other.scanPath;
-
 	return *this;
 }
 
